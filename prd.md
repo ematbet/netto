@@ -5,6 +5,7 @@
 **Author:** [your name]
 **Date:** August 2026
 **Tax year modelled:** 2026 (anno d'imposta 2026, L. 199/2025 — Legge di Bilancio 2026)
+**Last updated:** 2026-08-14 — dashboard v1 built ([changelog.md](changelog.md))
 
 ---
 
@@ -361,7 +362,7 @@ This tests multi-bracket IRPEF, detrazione phase-out, and cuneo phase-out.
 
 | Epic | Scope | Status |
 |---|---|---|
-| [Dashboard — La scala](epics/dashboard/epic.md) | L'intera schermata v1: input, chip assunzioni, risultato, ledger, pane "Come è stato calcolato?" | v1 — must ship |
+| [Dashboard — La scala](epics/dashboard/epic.md) | L'intera schermata v1: input, chip assunzioni, risultato, ledger, pane "Come è stato calcolato?" | v1 — Built |
 
 ### v1 — Must ship
 

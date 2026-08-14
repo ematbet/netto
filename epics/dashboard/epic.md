@@ -1,8 +1,8 @@
 # Dashboard — La scala
 
 **Epic:** Dashboard
-**Status:** v1 — must ship
-**Related:** [prd.md](../../prd.md) · [brand-system/brand-system.md](../../brand-system/brand-system.md)
+**Status:** v1 — Built
+**Related:** [prd.md](../../prd.md) · [changelog.md](../../changelog.md) · [brand-system/brand-system.md](../../brand-system/brand-system.md)
 
 ---
 
