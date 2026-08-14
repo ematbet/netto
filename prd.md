@@ -5,7 +5,6 @@
 **Author:** [your name]
 **Date:** August 2026
 **Tax year modelled:** 2026 (anno d'imposta 2026, L. 199/2025 — Legge di Bilancio 2026)
-**Last updated:** 2026-08-14 — dashboard v1 built ([changelog.md](changelog.md))
 
 ---
 
@@ -38,7 +37,7 @@ These are explicitly excluded from the prototype and acknowledged as simplificat
 - Employer cost view (costo azienda)
 - Real-time payslip simulation (monthly accruals, conguaglio)
 
-## 4. Success criteria (for the interview, not a launch)
+## 4. Success criteria (not a launch)
 
 1. **Arithmetic correctness:** The worked example at RAL 30.000 matches the spec to the cent. A reviewer can change the RAL and verify each intermediate step against the formulas in the config file.
 2. **Transparency:** Every deduction line is visible, labelled with its institutional name, and the assumptions are declared on-screen before the user clicks.
@@ -357,12 +356,6 @@ This tests multi-bracket IRPEF, detrazione phase-out, and cuneo phase-out.
 ---
 
 ## 10. Feature scoping
-
-### Epics
-
-| Epic | Scope | Status |
-|---|---|---|
-| [Dashboard — La scala](epics/dashboard/epic.md) | L'intera schermata v1: input, chip assunzioni, risultato, ledger, pane "Come è stato calcolato?" | v1 — Built |
 
 ### v1 — Must ship
 
