@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Netto — Brand System · Net Salary Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..800;1,100..125,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ——— Colore ——— */
+  --carta:      #FAFAF6;
+  --carta-2:    #F0F0E9;
+  --inchiostro: #14161B;
+  --blu:        #1F3FD1;
+  --blu-scuro:  #142785;
+  --rosso:      #E4402A;
+  --giallo:     #FFC845;
+  --nebbia:     #C9CEDB;
+
+  /* ——— Carattere ——— */
+  --display: 'Archivo', system-ui, sans-serif;
+  --body:    'Instrument Sans', system-ui, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* ——— Spazio ——— */
+  --gut: clamp(20px, 5vw, 64px);
+  --rule: 1px solid var(--nebbia);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--carta);
+  color:var(--inchiostro);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--gut)}
+
+/* ——————— top bar ——————— */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--carta);
+  border-bottom:var(--rule);
+}
+.topbar .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.topbar svg{width:26px;height:26px;flex:none}
+.topbar b{font-family:var(--display);font-weight:800;font-stretch:118%;letter-spacing:-.02em;font-size:18px}
+.topbar span{font-family:var(--mono);font-size:11px;color:#5A6274;letter-spacing:.04em}
+.topbar .push{margin-left:auto}
+@media(max-width:640px){.topbar .hide-s{display:none}}
+
+/* ——————— hero ——————— */
+.hero{padding:clamp(48px,9vw,110px) 0 clamp(40px,7vw,80px);border-bottom:3px solid var(--inchiostro)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,60px);align-items:end}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;align-items:start}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--rosso);margin-bottom:22px}
+.wordmark{
+  font-family:var(--display);font-weight:800;font-stretch:122%;
+  font-size:clamp(4.2rem,15vw,10.5rem);line-height:.82;letter-spacing:-.045em;
+  color:var(--blu);
+}
+.hero p.claim{
+  font-family:var(--display);font-weight:600;font-stretch:112%;
+  font-size:clamp(1.35rem,3.4vw,2.1rem);line-height:1.12;letter-spacing:-.02em;
+  margin-top:26px;max-width:15ch;
+}
+.hero p.sub{margin-top:18px;max-width:44ch;color:#39404E}
+.hero-art{background:var(--blu);border-radius:20px;padding:clamp(22px,3vw,34px);color:var(--carta)}
+.hero-art .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;opacity:.72;text-transform:uppercase}
+
+/* staircase (signature) */
+.scala{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.scala .step{display:flex;align-items:center;gap:10px}
+.scala .bar{height:16px;border-radius:4px;background:var(--carta);transform-origin:left center;animation:grow .5s cubic-bezier(.2,.75,.3,1) backwards}
+.scala .bar.out{background:var(--rosso)}
+.scala .bar.net{background:var(--giallo)}
+.scala .tag{font-family:var(--mono);font-size:11px;white-space:nowrap;opacity:.85}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ——————— sections ——————— */
+section{padding:clamp(46px,7vw,88px) 0;border-bottom:var(--rule)}
+.head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px;flex-wrap:wrap}
+.code{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;
+  background:var(--inchiostro);color:var(--carta);padding:4px 9px;border-radius:4px;
+}
+h2{font-family:var(--display);font-weight:800;font-stretch:115%;letter-spacing:-.03em;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1}
+.lede{max-width:62ch;color:#39404E;margin-bottom:34px;font-size:clamp(1rem,2.2vw,1.13rem)}
+h3{font-family:var(--display);font-weight:700;font-stretch:108%;font-size:1.02rem;letter-spacing:-.01em;margin-bottom:8px}
+.muted{color:#5A6274;font-size:.92rem}
+.mono{font-family:var(--mono)}
+
+.cols{display:grid;gap:22px}
+.c2{grid-template-columns:repeat(2,1fr)}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:880px){.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.c2,.c3,.c4{grid-template-columns:1fr}}
+
+.card{border:var(--rule);border-radius:14px;padding:20px;background:#fff}
+.card.flat{background:transparent}
+
+/* ——————— logo ——————— */
+.logo-tile{display:grid;place-items:center;min-height:190px;border-radius:14px;border:var(--rule);background:#fff;padding:24px}
+.logo-tile.dark{background:var(--inchiostro);border-color:var(--inchiostro)}
+.logo-tile.blue{background:var(--blu);border-color:var(--blu)}
+.lockup{display:flex;align-items:center;gap:12px}
+.lockup svg{width:44px;height:44px;flex:none}
+.lockup .name{font-family:var(--display);font-weight:800;font-stretch:120%;letter-spacing:-.035em;font-size:34px;line-height:.9;color:var(--blu)}
+.lockup .desc{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#5A6274;display:block;margin-top:5px}
+.dark .name,.blue .name{color:var(--carta)}
+.dark .desc,.blue .desc{color:rgba(250,250,246,.6)}
+.tile-cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5A6274;margin-top:8px}
+.dont{border:var(--rule);border-radius:14px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.dont .x{color:var(--rosso);font-family:var(--mono);font-weight:700;flex:none}
+
+/* ——————— color ——————— */
+.sw{border-radius:14px;overflow:hidden;border:var(--rule)}
+.sw .chip{height:112px}
+.sw .meta{padding:12px 14px;background:#fff}
+.sw .n{font-family:var(--display);font-weight:700;font-stretch:108%;font-size:.98rem}
+.sw .h{font-family:var(--mono);font-size:12px;color:#5A6274;margin-top:2px}
+.sw .u{font-size:.84rem;color:#39404E;margin-top:8px;line-height:1.4}
+
+/* ——————— type ——————— */
+.spec{border-top:var(--rule);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:baseline}
+@media(max-width:700px){.spec{grid-template-columns:1fr;gap:6px}}
+.spec .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#5A6274;text-transform:uppercase}
+.s-display{font-family:var(--display);font-weight:800;font-stretch:122%;font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.04em;line-height:.95}
+.s-h2{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:1.7rem;letter-spacing:-.025em}
+.s-body{font-size:1.05rem;max-width:48ch}
+.s-num{font-family:var(--mono);font-weight:700;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.s-cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#5A6274}
+
+/* ——————— app mock ——————— */
+.mock{background:var(--carta-2);border-radius:22px;padding:clamp(16px,3vw,30px)}
+.screen{background:#fff;border-radius:16px;border:var(--rule);overflow:hidden;max-width:520px;margin:0 auto}
+.screen header{padding:16px 20px;border-bottom:var(--rule);display:flex;align-items:center;gap:9px}
+.screen header svg{width:22px;height:22px}
+.screen header b{font-family:var(--display);font-weight:800;font-stretch:118%;letter-spacing:-.03em;color:var(--blu)}
+.screen .pad{padding:20px}
+label.f{display:block;font-size:.88rem;font-weight:600;margin-bottom:7px}
+.inputline{display:flex;align-items:center;border:2px solid var(--inchiostro);border-radius:10px;padding:10px 14px;background:#fff}
+.inputline .cur{font-family:var(--mono);color:#5A6274;margin-right:8px}
+.inputline .val{font-family:var(--mono);font-weight:700;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chip-i{font-family:var(--mono);font-size:11px;border:var(--rule);border-radius:100px;padding:5px 11px;color:#39404E;background:#fff}
+.btn{
+  margin-top:18px;width:100%;border:0;border-radius:10px;background:var(--blu);color:#fff;
+  font-family:var(--display);font-weight:700;font-stretch:110%;font-size:1.02rem;padding:14px;
+  box-shadow:0 3px 0 var(--blu-scuro);cursor:pointer;transition:transform .12s,box-shadow .12s;
+}
+.btn:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--blu-scuro)}
+.btn:focus-visible{outline:3px solid var(--giallo);outline-offset:3px}
+.result{background:var(--blu);color:#fff;padding:22px 20px}
+.result .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.result .big{font-family:var(--mono);font-weight:700;font-size:clamp(2.4rem,9vw,3.3rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin:6px 0 2px}
+.result .snd{font-family:var(--mono);font-size:.9rem;opacity:.82}
+
+/* ledger */
+.ledger{padding:6px 20px 18px}
+.row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px dashed var(--nebbia);font-size:.9rem}
+.row:last-child{border-bottom:0}
+.row .amt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+.row .amt.neg{color:var(--rosso)}
+.row .amt.pos{color:var(--blu)}
+.row .lbl small{display:block;color:#5A6274;font-size:.78rem;font-family:var(--mono)}
+.row.tot{border-top:2px solid var(--inchiostro);border-bottom:0;margin-top:6px;padding-top:12px;font-weight:700}
+.mini-bar{height:8px;border-radius:3px;background:var(--blu);margin-top:6px}
+.mini-bar.r{background:var(--rosso)}
+
+/* voice */
+.vt{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--rule);border-radius:14px;overflow:hidden}
+@media(max-width:700px){.vt{grid-template-columns:1fr}}
+.vt div{padding:16px 18px}
+.vt .yes{background:#fff;border-right:var(--rule)}
+.vt .no{background:var(--carta-2);color:#5A6274}
+@media(max-width:700px){.vt .yes{border-right:0;border-bottom:var(--rule)}}
+.vt .tick{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.vt .yes .tick{color:var(--blu)}
+.vt .no .tick{color:var(--rosso)}
+
+ul.clean{list-style:none}
+ul.clean li{padding:9px 0;border-bottom:var(--rule);display:flex;gap:12px;font-size:.95rem}
+ul.clean li:last-child{border-bottom:0}
+ul.clean .b{font-family:var(--mono);font-size:11px;color:var(--rosso);padding-top:3px;flex:none;width:26px}
+
+pre{background:var(--inchiostro);color:#E8EAF0;border-radius:14px;padding:20px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.75}
+pre .c{color:#7C8AA8}
+pre .p{color:var(--giallo)}
+
+footer{padding:40px 0 70px;color:#5A6274;font-size:.86rem}
+a{color:var(--blu)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- reusable mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 100 100">
+    <rect width="100" height="100" rx="23" fill="currentColor"/>
+    <g fill="var(--carta)">
+      <rect x="20" y="23" width="60" height="11" rx="3.5"/>
+      <rect x="20" y="40.5" width="45" height="11" rx="3.5"/>
+      <rect x="20" y="58" width="33" height="11" rx="3.5"/>
+    </g>
+    <rect x="20" y="75.5" width="23" height="11" rx="3.5" fill="var(--giallo)"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <svg style="color:var(--blu)"><use href="#mark"/></svg>
+    <b>Netto</b>
+    <span class="hide-s">Net Salary Calculator</span>
+    <span class="push mono">Brand system v1.0</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Brand system · Jet HR product prototype</div>
+      <div class="wordmark">Netto</div>
+      <p class="claim">Parliamo netto.</p>
+      <p class="sub">A contract gives you one number. Your bank account gives you another. Netto shows you every line between the two — named the way the payslip names it.</p>
+    </div>
+    <div class="hero-art">
+      <div class="lbl">RAL 30.000 € → netto</div>
+      <div class="scala">
+        <div class="step"><div class="bar" style="width:100%;animation-delay:.05s"></div></div>
+        <div class="step"><div class="bar" style="width:90.81%;animation-delay:.18s"></div><div class="bar out" style="width:9.19%;animation-delay:.18s"></div></div>
+        <div class="step"><div class="bar" style="width:76.52%;animation-delay:.31s"></div><div class="bar out" style="width:14.29%;animation-delay:.31s"></div></div>
+        <div class="step"><div class="bar" style="width:74.68%;animation-delay:.44s"></div><div class="bar out" style="width:1.84%;animation-delay:.44s"></div></div>
+        <div class="step"><div class="bar net" style="width:74.68%;animation-delay:.6s"></div><div class="tag">22.403 €</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ————————————————— 010 ————————————————— -->
+<section id="storia">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 010</span><h2>The story</h2></div>
+    <p class="lede">Every employee in Italy meets the same wall. The offer letter says <span class="mono">RAL 30.000 €</span>. The payslip says <span class="mono">1.723,34 €</span>. Nobody explains the distance, so people either guess, ask a colleague, or paste the number into an ad-heavy calculator that returns a single figure with no reasoning attached.</p>
+
+    <div class="cols c2">
+      <div class="card">
+        <h3>The name</h3>
+        <p class="muted"><b>Netto</b> is the amount that arrives — and, in Italian, the way you say something plainly. <i>Parlare netto</i>: to speak without hedging. The product does both jobs at once, which is why the name is the promise. <span class="mono">Net Salary Calculator</span> stays as the descriptor in the lockup, so the category is never in doubt.</p>
+      </div>
+      <div class="card">
+        <h3>The position</h3>
+        <p class="muted">Netto isn't a tax tool for accountants. It's a <b>reading aid for the person being paid</b>, and for the HR or founder who has to explain a number they didn't design. It turns a contract figure into a payslip you can read before you sign one.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:36px 0 12px">Four principles</h3>
+    <ul class="clean">
+      <li><span class="b">01</span><span><b>Show the subtraction.</b> A result is never a lone number. Every output carries the line items that produced it, in order, with the arithmetic visible.</span></li>
+      <li><span class="b">02</span><span><b>Use the State's own words.</b> IRPEF, addizionale regionale, addizionale comunale, contributi INPS, detrazioni. Not "taxes" and "fees". The words match the payslip so the user can find them there.</span></li>
+      <li><span class="b">03</span><span><b>Declare the simplifications.</b> This is a model, not a payroll engine. Assumptions (13 mensilità, Milano, aliquota 9,19%, no agevolazioni) are on screen, not in a footnote.</span></li>
+      <li><span class="b">04</span><span><b>One number big, all others aligned.</b> The monthly net is the headline. Everything else is a right-aligned monospaced column you can subtract by eye.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ————————————————— 020 ————————————————— -->
+<section id="marchio">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 020</span><h2>The mark</h2></div>
+    <p class="lede">Four bars, descending, on a rounded key. It reads as a subtraction stack, as a payslip's ruled lines, and as the keycap of an Olivetti desk calculator — the Italian lineage this product belongs to. The last bar is yellow because the last bar is what you keep.</p>
+
+    <div class="cols c3">
+      <div>
+        <div class="logo-tile">
+          <div class="lockup">
+            <svg style="color:var(--blu)"><use href="#mark"/></svg>
+            <div><span class="name">Netto</span><span class="desc">Net salary calculator</span></div>
+          </div>
+        </div>
+        <div class="tile-cap">Primary lockup · on carta</div>
+      </div>
+      <div>
+        <div class="logo-tile dark">
+          <div class="lockup">
+            <svg style="color:var(--carta)"><use href="#mark"/></svg>
+            <div><span class="name">Netto</span><span class="desc">Net salary calculator</span></div>
+          </div>
+        </div>
+        <div class="tile-cap">Inverse · on inchiostro</div>
+      </div>
+      <div>
+        <div class="logo-tile blue">
+          <svg style="color:var(--carta);width:86px;height:86px"><use href="#mark"/></svg>
+        </div>
+        <div class="tile-cap">App icon / avatar · 1:1</div>
+      </div>
+    </div>
+
+    <div class="cols c2" style="margin-top:22px">
+      <div class="card flat">
+        <h3>Construction</h3>
+        <p class="muted">Built on a 100 unit square, corner radius 23. Bars are 11 units tall on a 17,5 unit rhythm, widths 60 / 45 / 33 / 23 — a fixed ratio, never re-drawn by hand. Clear space on all sides equals one bar height. Minimum size 20 px (mark alone) and 96 px wide (full lockup).</p>
+      </div>
+      <div class="card flat">
+        <h3>Misuse</h3>
+        <div class="cols" style="gap:10px">
+          <div class="dont"><span class="x">✕</span><span class="muted">Don't reorder the bars ascending — the mark is a deduction, not growth.</span></div>
+          <div class="dont"><span class="x">✕</span><span class="muted">Don't recolour the yellow bar. It is the only yellow in the system.</span></div>
+          <div class="dont"><span class="x">✕</span><span class="muted">Don't set the wordmark in anything but Archivo Expanded 800.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— 030 ————————————————— -->
+<section id="colore">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 030</span><h2>Colour</h2></div>
+    <p class="lede">Two working colours and a neutral pair, borrowed from Giovanni Pintori's Olivetti posters: flat blocks of ink blue and vermilion on poster stock. In Netto the split is semantic, not decorative — <b>blue is what you keep, red is what is withheld</b>. If a colour appears, it is making a claim about money.</p>
+
+    <div class="cols c3">
+      <div class="sw"><div class="chip" style="background:#1F3FD1"></div><div class="meta"><div class="n">Blu Somma</div><div class="h">#1F3FD1</div><div class="u">Primary. Brand, results, remaining amounts, primary action.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E4402A"></div><div class="meta"><div class="n">Rosso Trattenuta</div><div class="h">#E4402A</div><div class="u">Deductions only — INPS, IRPEF, addizionali. Also errors.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFC845"></div><div class="meta"><div class="n">Giallo Tasto</div><div class="h">#FFC845</div><div class="u">Rationed. The net bar, focus rings, one highlight per screen.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#14161B"></div><div class="meta"><div class="n">Inchiostro</div><div class="h">#14161B</div><div class="u">All body text, input borders, section codes.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FAFAF6;box-shadow:inset 0 0 0 1px #C9CEDB"></div><div class="meta"><div class="n">Carta</div><div class="h">#FAFAF6</div><div class="u">Page ground. Cards sit on pure #FFF to lift off it.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C9CEDB"></div><div class="meta"><div class="n">Nebbia</div><div class="h">#C9CEDB</div><div class="u">Rules, dividers, dashed ledger lines, disabled states.</div></div></div>
+    </div>
+
+    <p class="muted" style="margin-top:20px">Contrast: Inchiostro on Carta 15.4:1, Carta on Blu Somma 8.1:1, Inchiostro on Giallo 11.9:1. Rosso is never used for body copy below 16 px — deduction amounts are set at 16 px minimum and always carry a minus sign, so colour is never the only signal.</p>
+  </div>
+</section>
+
+<!-- ————————————————— 040 ————————————————— -->
+<section id="carattere">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 040</span><h2>Type</h2></div>
+    <p class="lede">Three faces, three jobs. A payslip is a monospaced document — figures have to stack in a column so the eye can do the subtraction. That constraint decides the system: <b>every number in Netto is monospaced and tabular</b>, always.</p>
+
+    <div class="spec"><div class="k">Archivo Expanded 800<br>Display</div><div class="s-display">22.403,37 €</div></div>
+    <div class="spec"><div class="k">Archivo 700 · 112%<br>Headings</div><div class="s-h2">Come arriviamo al netto</div></div>
+    <div class="spec"><div class="k">Instrument Sans 400<br>Body & UI</div><div class="s-body">L'imponibile fiscale è la RAL meno i contributi previdenziali a carico del dipendente. È su questa base che si calcola l'IRPEF.</div></div>
+    <div class="spec"><div class="k">JetBrains Mono 700<br>Figures</div><div class="s-num">1.723,34</div></div>
+    <div class="spec"><div class="k">JetBrains Mono 400<br>Labels & codes</div><div class="s-cap">VOCE 040 · IRPEF LORDA · ALIQUOTA 23%</div></div>
+
+    <div class="cols c2" style="margin-top:34px">
+      <div class="card">
+        <h3>Why these three</h3>
+        <p class="muted">Archivo's expanded widths carry the squared, engineered feel of Italian mid-century technical lettering (Novarese's Eurostile) without the retro costume. Instrument Sans is narrow and quiet at 15–17 px, so long fiscal sentences stay readable. JetBrains Mono is the ledger face — and its name is a small nod to where this prototype is going.</p>
+      </div>
+      <div class="card">
+        <h3>Number rules</h3>
+        <ul class="clean muted">
+          <li><span class="b">·</span><span>Italian formatting always: <span class="mono">22.403,37 €</span>. Symbol after the figure, non-breaking space.</span></li>
+          <li><span class="b">·</span><span>Two decimals in the ledger, zero decimals in headline figures.</span></li>
+          <li><span class="b">·</span><span><span class="mono">font-variant-numeric: tabular-nums</span> on every amount.</span></li>
+          <li><span class="b">·</span><span>Deductions always carry an explicit <span class="mono">−</span>. Percentages in mono: <span class="mono">9,19%</span>.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— 050 ————————————————— -->
+<section id="scala">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 050</span><h2>The signature: <span style="color:var(--blu)">la scala</span></h2></div>
+    <p class="lede">One idea used three times. The descending staircase is the logo, the loading state, and the result chart — so the thing you see on the icon is literally the thing the product does. Each step keeps the remaining amount in blue and shows what was just removed in red, left-aligned, so the blue edge walks down and to the left. The final step turns yellow: that's the net.</p>
+
+    <div class="card" style="background:var(--inchiostro);border-color:var(--inchiostro);color:var(--carta);padding:28px">
+      <div class="scala" style="gap:14px">
+        <div class="step"><div class="bar" style="width:78%"></div><div class="tag">RAL &nbsp;30.000,00</div></div>
+        <div class="step"><div class="bar" style="width:70.83%"></div><div class="bar out" style="width:7.17%"></div><div class="tag">−&nbsp;INPS &nbsp;2.757,00</div></div>
+        <div class="step"><div class="bar" style="width:59.69%"></div><div class="bar out" style="width:11.14%"></div><div class="tag">−&nbsp;IRPEF netta &nbsp;4.286,60</div></div>
+        <div class="step"><div class="bar" style="width:58.81%"></div><div class="bar out" style="width:.88%"></div><div class="tag">−&nbsp;Add. regionale &nbsp;335,09</div></div>
+        <div class="step"><div class="bar" style="width:58.25%"></div><div class="bar out" style="width:.56%"></div><div class="tag">−&nbsp;Add. comunale &nbsp;217,94</div></div>
+        <div class="step"><div class="bar net" style="width:58.25%;height:22px"></div><div class="tag" style="font-weight:700;opacity:1">= 22.403,37 €</div></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px">Bars are proportional to the RAL, never rescaled per row — the whole point is that the small ones look small. On mobile the amounts drop below each bar rather than shrinking the bar.</p>
+  </div>
+</section>
+
+<!-- ————————————————— 060 ————————————————— -->
+<section id="app">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 060</span><h2>The product</h2></div>
+    <p class="lede">The whole interface is one input, one action, one result, one ledger. Assumptions are visible as chips above the button, because the fastest way to lose trust in a calculator is to hide what it assumed.</p>
+
+    <div class="mock">
+      <div class="screen">
+        <header>
+          <svg style="color:var(--blu)"><use href="#mark"/></svg>
+          <b>Netto</b>
+        </header>
+        <div class="pad">
+          <label class="f" for="ral">Retribuzione annua lorda (RAL)</label>
+          <div class="inputline"><span class="cur">€</span><span class="val" id="ral">30.000</span></div>
+          <div class="chips">
+            <span class="chip-i">Impiegato · tempo indeterminato</span>
+            <span class="chip-i">13 mensilità</span>
+            <span class="chip-i">Milano · Lombardia</span>
+            <span class="chip-i">Nessuna agevolazione</span>
+            <span class="chip-i">Aliquote 2026</span>
+          </div>
+          <button class="btn">Calcola il netto</button>
+        </div>
+
+        <div class="result">
+          <div class="k">Netto mensile · su 13 mensilità</div>
+          <div class="big">1.723,34 €</div>
+          <div class="snd">22.403,37 € netti all'anno · 7.596,63 € di trattenute</div>
+        </div>
+
+        <div class="ledger">
+          <div class="row"><div class="lbl">Retribuzione lorda<small>RAL</small></div><div class="amt">30.000,00</div></div>
+          <div class="row"><div class="lbl">Contributi INPS<small>9,19% · a carico dipendente</small></div><div class="amt neg">−2.757,00</div></div>
+          <div class="row"><div class="lbl">Imponibile fiscale<small>base IRPEF</small></div><div class="amt">27.243,00</div></div>
+          <div class="row"><div class="lbl">IRPEF lorda<small>23% fino a 28.000 · 33% · 43%</small></div><div class="amt neg">−6.265,89</div></div>
+          <div class="row"><div class="lbl">Detrazioni da lavoro dipendente<small>art. 13 TUIR</small></div><div class="amt pos">+1.979,29</div></div>
+          <div class="row"><div class="lbl">Addizionale regionale<small>Lombardia · 1,23%</small></div><div class="amt neg">−335,09</div></div>
+          <div class="row"><div class="lbl">Addizionale comunale<small>Milano · 0,80%</small></div><div class="amt neg">−217,94</div></div>
+          <div class="row tot"><div class="lbl">Netto annuo</div><div class="amt">22.403,37 €</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px;text-align:center">Worked example for the visual system, computed on 2026 rules: IRPEF 23% / 33% / 43% (L. 199/2025), INPS FPLD 9,19%, detrazione art. 13 TUIR, Lombardia 1,23%, Milano 0,80%. Rates live in one dated config file, never in a component.</p>
+  </div>
+</section>
+
+<!-- ————————————————— 070 ————————————————— -->
+<section id="voce">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 070</span><h2>Voice &amp; copy</h2></div>
+    <p class="lede">Interface Italian, sentence case, second person singular, no exclamation marks. The voice is a competent colleague explaining your payslip at a desk: precise about the mechanism, never apologetic, never selling.</p>
+
+    <div class="cols" style="gap:14px">
+      <div class="vt">
+        <div class="yes"><div class="tick">Say</div>Calcola il netto</div>
+        <div class="no"><div class="tick">Not</div>Invia / Scopri ora il tuo stipendio!</div>
+      </div>
+      <div class="vt">
+        <div class="yes"><div class="tick">Say</div>Inserisci una RAL tra 10.000 € e 300.000 € per vedere il calcolo.</div>
+        <div class="no"><div class="tick">Not</div>Ops! Qualcosa è andato storto.</div>
+      </div>
+      <div class="vt">
+        <div class="yes"><div class="tick">Say</div>Questo calcolo assume 13 mensilità e aliquote di Milano. Cambia le assunzioni se non è il tuo caso.</div>
+        <div class="no"><div class="tick">Not</div>I risultati sono puramente indicativi e non vincolanti.</div>
+      </div>
+      <div class="vt">
+        <div class="yes"><div class="tick">Say</div>Nessun calcolo ancora. Inserisci la tua RAL per iniziare.</div>
+        <div class="no"><div class="tick">Not</div>Nessun dato disponibile.</div>
+      </div>
+    </div>
+
+    <div class="cols c3" style="margin-top:26px">
+      <div class="card flat"><h3>Naming things</h3><p class="muted">Fiscal terms keep their legal names. Everything the user controls gets a plain name: <span class="mono">mensilità</span>, not <span class="mono">payment periodicity</span>.</p></div>
+      <div class="card flat"><h3>Errors</h3><p class="muted">State what happened and the way out, in one sentence. No apology, no blame, no vague "riprova più tardi".</p></div>
+      <div class="card flat"><h3>Consistency</h3><p class="muted">The button says <b>Calcola il netto</b>; the result heading says <b>Netto mensile</b>. The same word travels through the flow.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— 080 ————————————————— -->
+<section id="a11y">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 080</span><h2>Motion &amp; access</h2></div>
+    <div class="cols c2">
+      <div class="card">
+        <h3>Motion</h3>
+        <ul class="clean muted">
+          <li><span class="b">·</span><span>One orchestrated moment only: on <b>Calcola</b>, the scala draws top to bottom, 90 ms stagger per step, 500 ms each, <span class="mono">cubic-bezier(.2,.75,.3,1)</span>.</span></li>
+          <li><span class="b">·</span><span>The headline figure counts up over 400 ms. Nothing else animates.</span></li>
+          <li><span class="b">·</span><span>Buttons press down 2 px onto their own shadow — a rubber calculator key, not a hover glow.</span></li>
+          <li><span class="b">·</span><span><span class="mono">prefers-reduced-motion</span> renders the final state instantly.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Access</h3>
+        <ul class="clean muted">
+          <li><span class="b">·</span><span>Focus ring: 3 px Giallo Tasto, 3 px offset, visible on every control.</span></li>
+          <li><span class="b">·</span><span>Colour never carries meaning alone — deductions have a minus sign and a label.</span></li>
+          <li><span class="b">·</span><span>The ledger is a real <span class="mono">&lt;table&gt;</span> with a caption, so a screen reader reads label and amount as a pair.</span></li>
+          <li><span class="b">·</span><span>Amounts get <span class="mono">aria-live="polite"</span>; the result is announced, not just repainted.</span></li>
+          <li><span class="b">·</span><span>Body text never below 15 px; input font-size 16 px+ to stop iOS zoom.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— 090 ————————————————— -->
+<section id="token">
+  <div class="wrap">
+    <div class="head"><span class="code">VOCE 090</span><h2>Tokens</h2></div>
+    <p class="lede">Drop this into the prototype and every decision above comes with it.</p>
+<pre><span class="c">/* Netto — design tokens v1.0 */</span>
+:root {
+  <span class="c">/* colore — blue keeps, red withholds */</span>
+  <span class="p">--nt-blu</span>:        #1F3FD1;   <span class="c">/* primary, remaining, actions   */</span>
+  <span class="p">--nt-blu-scuro</span>:  #142785;   <span class="c">/* key shadow, pressed state     */</span>
+  <span class="p">--nt-rosso</span>:      #E4402A;   <span class="c">/* trattenute, errors            */</span>
+  <span class="p">--nt-giallo</span>:     #FFC845;   <span class="c">/* the net bar, focus ring       */</span>
+  <span class="p">--nt-inchiostro</span>: #14161B;   <span class="c">/* text, borders                 */</span>
+  <span class="p">--nt-carta</span>:      #FAFAF6;   <span class="c">/* page ground                   */</span>
+  <span class="p">--nt-nebbia</span>:     #C9CEDB;   <span class="c">/* rules, dividers, disabled     */</span>
+
+  <span class="c">/* carattere */</span>
+  <span class="p">--nt-display</span>: "Archivo", system-ui, sans-serif;      <span class="c">/* wdth 110–122, wght 700–800 */</span>
+  <span class="p">--nt-body</span>:    "Instrument Sans", system-ui, sans-serif;
+  <span class="p">--nt-mono</span>:    "JetBrains Mono", ui-monospace, monospace;
+
+  <span class="c">/* scala tipografica — 1.25 */</span>
+  <span class="p">--nt-t-xs</span>: 11px;  <span class="p">--nt-t-s</span>: 13px;  <span class="p">--nt-t-m</span>: 17px;
+  <span class="p">--nt-t-l</span>: 21px;  <span class="p">--nt-t-xl</span>: 34px; <span class="p">--nt-t-hero</span>: clamp(40px, 9vw, 56px);
+
+  <span class="c">/* spazio — 4px base */</span>
+  <span class="p">--nt-1</span>: 4px; <span class="p">--nt-2</span>: 8px; <span class="p">--nt-3</span>: 12px; <span class="p">--nt-4</span>: 16px;
+  <span class="p">--nt-6</span>: 24px; <span class="p">--nt-8</span>: 32px; <span class="p">--nt-12</span>: 48px;
+
+  <span class="c">/* forma & moto */</span>
+  <span class="p">--nt-r-key</span>: 10px;  <span class="p">--nt-r-card</span>: 14px;  <span class="p">--nt-r-mark</span>: 23%;
+  <span class="p">--nt-ease</span>: cubic-bezier(.2,.75,.3,1);
+  <span class="p">--nt-dur</span>: 500ms;   <span class="p">--nt-stagger</span>: 90ms;
+}
+
+<span class="c">/* every amount, everywhere */</span>
+.amount { font-family: var(--nt-mono); font-variant-numeric: tabular-nums; }</pre>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Netto</b> — brand system v1.0 · prepared for the Jet HR product builder task. Type: Archivo, Instrument Sans, JetBrains Mono (all SIL Open Font License). Colour lineage: Giovanni Pintori's Olivetti poster work, 1949–1967.</p>
+  </div>
+</footer>
+
+</body>
+</html>
