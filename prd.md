@@ -2,7 +2,7 @@
 
 **Product:** Netto — Net Salary Calculator
 **Tagline:** Parliamo netto.
-**Author:** [your name]
+**Author:** Matteo Betti
 **Date:** August 2026
 **Tax year modelled:** 2026 (anno d'imposta 2026, L. 199/2025 — Legge di Bilancio 2026)
 
